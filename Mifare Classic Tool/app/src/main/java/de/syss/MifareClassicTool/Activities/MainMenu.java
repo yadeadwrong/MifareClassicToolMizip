@@ -78,6 +78,8 @@ public class MainMenu extends AppCompatActivity {
 
     private final static int FILE_CHOOSER_DUMP_FILE = 1;
     private final static int FILE_CHOOSER_KEY_FILE = 2;
+
+    private final static int FILE_CHOOSER_DUMP_MIZIP = 3;
     private boolean mDonateDialogWasShown = false;
     private boolean mInfoExternalNfcDialogWasShown = false;
     private boolean mHasNoNfc = false;
@@ -118,7 +120,7 @@ public class MainMenu extends AppCompatActivity {
                 + ": " + Common.getVersionCode());
 
         // Add the context menu to the tools button.
-        Button tools = findViewById(R.id.buttonMainTools);
+        Button tools = findViewById(R.id.buttonTools);
         registerForContextMenu(tools);
 
         // Restore state.
@@ -819,6 +821,12 @@ public class MainMenu extends AppCompatActivity {
      * @see FileChooser
      * @see #onActivityResult(int, int, Intent)
      */
+    public void onOpenMizipMenu(View view)
+    {
+        Intent intent = new Intent(this, CreditModifier.class);
+        startActivityForResult(intent, FILE_CHOOSER_DUMP_MIZIP);
+
+    }
     public void onOpenKeyEditor(View view) {
         Intent intent = new Intent(this, FileChooser.class);
         intent.putExtra(FileChooser.EXTRA_DIR,
@@ -942,25 +950,33 @@ public class MainMenu extends AppCompatActivity {
     public void onActivityResult(int requestCode, int resultCode, Intent data) {
         super.onActivityResult(requestCode, resultCode, data);
 
-        switch(requestCode) {
-        case FILE_CHOOSER_DUMP_FILE:
-            if (resultCode == Activity.RESULT_OK) {
-                Intent intent = new Intent(this, DumpEditor.class);
-                intent.putExtra(FileChooser.EXTRA_CHOSEN_FILE,
+        switch (requestCode) {
+            case FILE_CHOOSER_DUMP_FILE:
+                if (resultCode == Activity.RESULT_OK) {
+                    Intent intent = new Intent(this, DumpEditor.class);
+                    intent.putExtra(FileChooser.EXTRA_CHOSEN_FILE,
                         data.getStringExtra(
-                                FileChooser.EXTRA_CHOSEN_FILE));
-                startActivity(intent);
-            }
-            break;
-        case FILE_CHOOSER_KEY_FILE:
-            if (resultCode == Activity.RESULT_OK) {
-                Intent intent = new Intent(this, KeyEditor.class);
-                intent.putExtra(FileChooser.EXTRA_CHOSEN_FILE,
+                            FileChooser.EXTRA_CHOSEN_FILE));
+                    startActivity(intent);
+                }
+                break;
+            case FILE_CHOOSER_KEY_FILE:
+                if (resultCode == Activity.RESULT_OK) {
+                    Intent intent = new Intent(this, KeyEditor.class);
+                    intent.putExtra(FileChooser.EXTRA_CHOSEN_FILE,
                         data.getStringExtra(
-                                FileChooser.EXTRA_CHOSEN_FILE));
-                startActivity(intent);
-            }
-            break;
+                            FileChooser.EXTRA_CHOSEN_FILE));
+                    startActivity(intent);
+
+                }
+                break;
+            case FILE_CHOOSER_DUMP_MIZIP:
+                if (resultCode == Activity.RESULT_OK) {
+                    Intent intent = new Intent(MainMenu.this, CreditModifier.class);
+                    startActivity(intent);
+
+                }
+                break;
         }
     }
 

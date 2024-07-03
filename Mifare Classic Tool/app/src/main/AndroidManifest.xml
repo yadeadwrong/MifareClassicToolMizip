@@ -94,6 +94,12 @@
             android:label="@string/title_activity_create_key_map" >
         </activity>
         <activity
+            android:name=".Activities.CreditModifier"
+            android:configChanges="keyboardHidden|orientation|screenSize"
+            android:icon="@drawable/open"
+            android:label="@string/title_activity_credit_modifier" >
+        </activity>
+        <activity
             android:name=".Activities.DumpEditor"
             android:configChanges="keyboardHidden|orientation|screenSize"
             android:icon="@drawable/edit_dump"

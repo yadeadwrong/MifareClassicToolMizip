@@ -98,13 +98,23 @@
                 android:layout_height="wrap_content" >
 
                 <Button
-                    android:id="@+id/buttonMainTools"
+                    android:id="@+id/buttonTools"
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
                     android:layout_weight="0.5"
                     android:drawableTop="@drawable/tools"
                     android:onClick="onShowTools"
                     android:text="@string/action_tools" />
+
+                <Button
+                    android:id="@+id/buttonTools"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:layout_weight="0.5"
+                    android:background="#E3D666"
+                    android:drawableTop="@drawable/edit_dump"
+                    android:onClick="onOpenMizipMenu"
+                    android:text="@string/title_activity_credit_modifier" />
 
                 <Button
                     android:id="@+id/buttonMainHelp"

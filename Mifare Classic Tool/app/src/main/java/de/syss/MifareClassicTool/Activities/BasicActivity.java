@@ -20,6 +20,7 @@ package de.syss.MifareClassicTool.Activities;
 
 import android.app.Activity;
 import android.content.Intent;
+import android.os.Bundle;
 
 import androidx.appcompat.app.AppCompatActivity;
 
@@ -73,5 +74,8 @@ public abstract class BasicActivity extends AppCompatActivity {
             Intent i = new Intent(this, TagInfoTool.class);
             startActivity(i);
         }
+    }
+
+    public void OnCreate(Bundle savedInstantState) {
     }
 }

@@ -44,7 +44,7 @@
         android:layout_alignParentBottom="true"
         android:onClick="onFileChosen"
         android:text="@string/action_choose_file" />
-    
+
     <ScrollView
         android:id="@+id/scrollViewFileChooser"
         android:layout_width="fill_parent"

@@ -87,6 +87,8 @@ public class FileChooser extends BasicActivity {
      * The text of the choose button. Optional.
      * e.g. "Open File"
      */
+    public  final static String EXTRA_CREDIT_MODIFIER =
+            "de.syss.MifareClassicTool.Activity.FileChooser.CREDIT_MODIFIER";
     public final static String EXTRA_BUTTON_TEXT =
             "de.syss.MifareClassicTool.Activity.FileChooser.BUTTON_TEXT";
 
@@ -117,6 +119,8 @@ public class FileChooser extends BasicActivity {
             FileChooser.class.getSimpleName();
     private RadioGroup mGroupOfFiles;
     private Button mChooserButton;
+
+    private TextView mCreditModifierText;
     private TextView mChooserText;
     private MenuItem mDeleteFile;
     private File mDir;
@@ -144,7 +148,6 @@ public class FileChooser extends BasicActivity {
     @Override
     public void onStart() {
         super.onStart();
-
         mChooserText = findViewById(
                 R.id.textViewFileChooser);
         mChooserButton = findViewById(
@@ -158,6 +161,10 @@ public class FileChooser extends BasicActivity {
         // Set chooser text.
         if (intent.hasExtra(EXTRA_CHOOSER_TEXT)) {
             mChooserText.setText(intent.getStringExtra(EXTRA_CHOOSER_TEXT));
+        }
+        if(intent.hasExtra(EXTRA_CREDIT_MODIFIER))
+        {
+            mCreditModifierText.setEnabled(true);
         }
         // Set button text.
         if (intent.hasExtra(EXTRA_BUTTON_TEXT)) {
@@ -310,7 +317,6 @@ public class FileChooser extends BasicActivity {
                     + " ---";
         }
         mChooserText.setText(chooserText);
-
         mChooserButton.setEnabled(!isEmpty);
         if (mDeleteFile != null) {
             mDeleteFile.setEnabled(!isEmpty);
